@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>blog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#for_script").click(function () {
+            var elementClick = $(this).attr("href")
+            var destination = $(elementClick).offset().top;
+            jQuery("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 800);
+            return false;
+        });
+    });
+</script>
+
+
+
+
+<body>
+<header class="main_header">
+    <div class="container">
+        <div class="absolute">
+            <img class="fixed" src="assets/images/icons8-профиль-кошки-80.png" width="60px">
+
+            <div id="fix" class="absolute_list">
+                <ul class="fixed_list">
+                    <li><a href="#">Демонстрации(blog)</a></li>
+                    <li><a href="#">Настройки</a></li>
+                    <li><a href="#">Участники</a></li>
+                    <li><a href="#">Достижения</a></li>
+                    <li><a href="#">Профиль</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="header_top">
+            <div class="logo">
+                <img src="assets/images/logo.png" width="180" alt="logo">
+            </div>
+
+            <nav class="main_menu">
+                <ul>
+                    <li><a href="#">КонсультацияBLOG</a></li>
+                    <li><a href="#">что-то</a></li>
+                    <li><a href="#">Прогулка по Питеру</a></li>
+                    <li><a href="#">Другое</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <div class="promo">
+            <div class="promo_title">
+                    <pre>
+  Жми!
+Мы поможем
+</pre>
+            </div>
+            <a id="for_script" class="btn btn_green" href="#bottom_for_script">Подать заявку</a>
+
+        </div>
+        <!--            -->
+        <div class="sticker sticker_robot"></div>
+        <div class="sticker sticker_space"></div>
+        <!--            -->
+    </div>
+</header>
+
+
+<section class="features">
+    <div class="container">
+        <div class="table">
+            <ul>
+                <li th:each="el, iterStat : ${posts}"><a href="#">
+                    <div class="img_table">
+                        <div class="title_in_table"><span th:text="${el.FullName}"/></div>
+                        <div class="details_in_table"><span th:text="${el.group_number}"/></div>
+                    </div>
+                </a></li>
+<!--                <li th:each="el, iterStat : ${posts}"><a href="#">-->
+<!--                    <div class="img_table">-->
+<!--                        <div class="title_in_table">The Title</div>-->
+<!--                        <div class="details_in_table"><span th:text="${iterStat.index}"/></div>-->
+<!--                    </div>-->
+<!--                </a></li>-->
+<!--                <li><a href="#">-->
+<!--                    <div class="img_table">-->
+<!--                        <div class="title_in_table">The Title</div>-->
+<!--                        <div class="details_in_table">Some detailswerwefewdwefwefewfewfwe</div>-->
+<!--                    </div>-->
+<!--                </a></li>-->
+<!--                <li><a href="#">-->
+<!--                    <div class="img_table">-->
+<!--                        <div class="title_in_table">The Title</div>-->
+<!--                        <div class="details_in_table">Some details</div>-->
+<!--                    </div>-->
+<!--                </a></li>-->
+            </ul>
+        </div>
+
+        <div class="promo_feature">
+            <div class="promo_title">
+                    <pre>
+Сюда!
+Если смелый
+</pre>
+            </div>
+            <a id="bottom_for_script" class="btn btn_green" href="#">оказать помощь</a>
+        </div>
+
+        <!--            -->
+        <div class="sticker sticker_man"></div>
+        <div class="sticker sticker_linux"></div>
+        <!--            -->
+    </div>
+</section>
+
+
+<section class="contacts">
+
+    <div class="container">
+        <h2 class="contacts_title">Заявка</h2>
+        <form class="contacts_form" action="" method="post">
+            <table>
+                <tr>
+                    <td class="title">
+                        <label for="fullname">ФИО:</label>
+                    </td>
+                    <td class="field">
+                        <input type="text" id="fullname" name="FullName" placeholder="Представьтесь, пожалуйста">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        <label for="group_number">Группа:</label>
+                    </td>
+
+                    <td class="field">
+                        <input type="text" id="group_number" name="group_number" placeholder="Введите номер своей группы">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="title">
+                        <label for="message">Вопрос:</label>
+                    </td>
+                    <td class="field">
+                            <textarea id="message" name="message"
+                                      placeholder="Сообщите все, что считаете нужным"></textarea>
+                    </td>
+                </tr>
+
+                <div class="input_wrapper">
+                    <input name="file" type="file" id="input_file" class="input input_file" multiple>
+                    <label for="input_file" class="input_file-button">
+                            <span class="input_file-icon-wrapper"><img class="input_file-icon"
+                                                                       src="https://cdn-icons-png.flaticon.com/512/21/21505.png" alt="иконка выбора файла"
+                                                                       width="40"></span>
+                        <span class="input_file-button-text">Выберите файл</span>
+                    </label>
+                </div>
+
+                <tr>
+                    <td class="title"></td>
+                    <td class="field">
+                        <input type="submit" class="btn btn_green" value="Отправить">
+                    </td>
+                </tr>
+
+
+
+            </table>
+        </form>
+
+
+        <div class="contacts_instruction">
+            <h3>
+                Заполните форму с кратким описанием вашей проблемы
+            </h3>
+
+            <p>Мы подготовим для вас индивидуальное предложение и выйдем на связь!</p>
+            <p class="contacts_alert"><strong>Внимание!</strong> Все поля обязательны для заполнения.</p>
+        </div>
+
+
+        <!--            -->
+        <div class="sticker sticker_girl_cat"></div>
+        <div class="sticker sticker_dinosaur"></div>
+        <!--            -->
+    </div>
+</section>
+
+<footer class="main_footer">
+    <div class="container">
+        <div class="text_footer">
+            Спасибо за то, что пришли к нам в гости. Фантазия закончилась, поэтому предлагаю посмотреть видосик про
+            наш любимый университет!
+        </div>
+        <!--        <div th:each="el : ${name_posts}">-->
+        <!--            <span th:text="el.FullName"/>-->
+        <!--        </div>-->
+        <div class="video_footer">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/6CUl9SgRs5s"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+
+        <!--            -->
+        <div class="sticker sticker_atomic"></div>
+        <div class="sticker sticker_java"></div>
+        <div class="sticker sticker_python"></div>
+        <div class="sticker sticker_globus"></div>
+        <div class="sticker sticker_man_dog"></div>
+        <!--            -->
+    </div>
+</footer>
+</body>
+</html>
